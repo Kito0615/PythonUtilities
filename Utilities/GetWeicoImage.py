@@ -38,8 +38,10 @@ def main():
 	if len(url) == 0:
 		print('Error!')
 	images = get_images(url)
+	idx = 1
 	for item in images:
-		download_image(item)
+		download_image(item, save_path = '{}.jpg'.format(idx))
+		idx += 1
 	os.system('open .')
 
 if __name__ == '__main__':
