@@ -193,8 +193,10 @@ def draw_line(file, sp_index, path, row, col):
     sp_col = int(sp_index % col)
     sp_wid = int(file_size[0] / row)
     sp_hig = int(file_size[1] / col)
-    start_center = (start_point[0] + sp_wid / 2.0,
-                    start_point[1] + sp_hig / 2.0)
+    if DEBUG:
+        print(sp_index, sp_row, sp_col)
+    start_center = (start_point[0] + sp_col * sp_wid + sp_wid / 2,
+                    start_point[1] + sp_row * sp_hig + sp_hig / 2)
     idx = 0
     drawer = ImageDraw.Draw(img)
     next_center = start_center
@@ -223,13 +225,14 @@ def get_one_draw(file, row, col):
     if DEBUG:
         print(color_list)
     sp_index = get_start_point_index(color_list)
+    sp_index1 = color_list.index('sp')
     map_list = make_map_list(''.join(color_list).replace('sp', '1'), row, col)
     G = get_graph(map_list)
     map_matrix = get_matrix(G)
     path = init(map_matrix, sp_index)
     if DEBUG:
         print(path)
-    draw_line(file, sp_index, path, row, col)
+    draw_line(file, sp_index1, path, row, col)
 
 
 # -------------------------帮助函数------------------------------
@@ -245,10 +248,11 @@ def show_usage():
 
 # -----------------Main 函数-------------------------------
 def main():
-    ops, args = getopt.getopt(sys.argv[1:], 'hi:r:c:', ['help', 'input=', 'row=', 'col='])
+    ops, args = getopt.getopt(sys.argv[1:], 'hdi:r:c:', ['help', 'debug', 'input=', 'row=', 'col='])
     file = ''
     row = 0
     col = 0
+    global DEBUG
     for opt, arg in ops:
         if opt in ('-h', '--help'):
             show_usage()

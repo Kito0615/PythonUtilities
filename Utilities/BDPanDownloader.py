@@ -1,7 +1,13 @@
 #! /usr/bin/env python3
 # -*- coding:utf-8 -*-
 
-import os, sys, time, re, json, random, getopt
+import os
+import sys
+import time
+import re
+import json
+import random
+import getopt
 import requests
 from lxml.html import fromstring
 import urllib.parse as parse
