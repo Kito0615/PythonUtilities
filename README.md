@@ -9,3 +9,4 @@ This repo is a collection of my own python utilities.
 4. [tax_cal.py](https://github.com/Kito0615/PythonUtilities/blob/master/Utilities/tax_cal.py). This script is for compare new Personal Income Tax calculate in China after 2018.10.1.
 5. [loan_cal.py](https://github.com/Kito0615/PythonUtilities/blob/master/Utilities/tax_cal.py). This script is for calculating the loan tax. Two methods are both calculated.
 6. [WeiboUserSpider.py](https://github.com/Kito0615/PythonUtilities/blob/master/Utilities/WeiboUserSpider.py). This script is use for crawl a weibo user (not yourself.) all tweets. Before you use it, you shoud fill the cookie copy from any browser you loged in at [page](https://weibo.cn).
+7. [one_draw.py](https://github.com/Kito0615/PythonUtilities/blob/master/Utilities/one_draw.py). This script is a trick for Wechat Mini Program Game fill the blank in one line.
