@@ -12,10 +12,13 @@
 import colorsys
 from PIL import Image
 from PIL import ImageDraw
+import getopt
+import sys
 
 crop_origin = (115, 250)
 crop_size = (520, 520)
 
+DEBUG = False
 
 # ---------------------分割图片-----------------------
 def split_image(img, row, col):
@@ -55,7 +58,6 @@ def get_main_color(img):
 # 深度优先遍历, graph 为图的邻接矩阵, path为路径栈, used为已访问栈, step为已经遍历的顶点数
 def dfs(graph, path, used, step):
     if step == len(graph):
-        # print(path)
         return path
     else:
         for i in range(len(graph)):
@@ -67,7 +69,6 @@ def dfs(graph, path, used, step):
                 else:  # 返回父节点
                     used[i] = False
                     path[step] = -1
-        # print(path)
         return None
 
 
@@ -137,12 +138,14 @@ def get_pic_info(file, row, col):
     img = Image.open(file)
     if abs(img.size[0] - img.size[1]) > 5:
         img = img.crop((crop_origin[0], crop_origin[1], crop_origin[0] + crop_size[0], crop_origin[1] + crop_size[1]))
-        img.show()
+        if DEBUG:
+            img.show()
     arr = split_image(img, row, col)
     rgb_list = []
     for im in arr:
         r, g, b = get_main_color(im)
-        print(r, g, b)
+        if DEBUG:
+            print(r, g, b)
         rgb_list.append([r, g, b])
     return rgb_list
 
@@ -217,19 +220,57 @@ def get_one_draw(file, row, col):
     color_list = []
     for tp in rgb_list:
         color_list.append(judge_space_color(tp))
-    print(color_list)
+    if DEBUG:
+        print(color_list)
     sp_index = get_start_point_index(color_list)
     map_list = make_map_list(''.join(color_list).replace('sp', '1'), row, col)
     G = get_graph(map_list)
     map_matrix = get_matrix(G)
     path = init(map_matrix, sp_index)
-    print(path)
+    if DEBUG:
+        print(path)
     draw_line(file, sp_index, path, row, col)
 
 
+# -------------------------帮助函数------------------------------
+def show_usage():
+    print('-' * 75)
+    print('Usage : %s [-h|-i|-c|-r|-d][--help|--input|--col|--row|-debug] args' % __file__)
+    print('\t-h, --help\t\t Print this help information.')
+    print('\t-d, --debug\t\t Print debug info.')
+    print('\t-i, --input PATH\t Input the image with quiz of Fill blank one line.')
+    print('\t-r, --row NUM\t Input the quiz with how many rows.')
+    print('\t-c, --col NUM\t Input the quiz with how many columns.')
+
+
 # -----------------Main 函数-------------------------------
+def main():
+    ops, args = getopt.getopt(sys.argv[1:], 'hi:r:c:', ['help', 'input=', 'row=', 'col='])
+    file = ''
+    row = 0
+    col = 0
+    for opt, arg in ops:
+        if opt in ('-h', '--help'):
+            show_usage()
+            sys.exit(0)
+        elif opt in ('-i', '--input'):
+            file = arg
+        elif opt in ('-r', '--row'):
+            row = int(arg)
+        elif opt in ('-c', '--col'):
+            col = int(arg)
+        elif opt in ('-d', '--debug'):
+            DEBUG = True
+
+    if row == 0 or col == 0 or len(file) == 0 or row != col:
+        show_usage()
+        sys.exit(0)
+    else:
+        get_one_draw(file, row, col)
+
+
 if __name__ == '__main__':
-    get_one_draw('Temp/test.jpg', 6, 6)
+    # get_one_draw('Temp/test.jpg', 6, 6)
     # map_list = [
     #     '011110',
     #     '111111',
@@ -243,3 +284,4 @@ if __name__ == '__main__':
     # sp = 22
     # path = init(map_matrix, sp)
     # print(path)
+    main()
