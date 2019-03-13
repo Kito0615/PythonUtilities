@@ -10,3 +10,4 @@ This repo is a collection of my own python utilities.
 5. [loan_cal.py](https://github.com/Kito0615/PythonUtilities/blob/master/Utilities/tax_cal.py). This script is for calculating the loan tax. Two methods are both calculated.
 6. [WeiboUserSpider.py](https://github.com/Kito0615/PythonUtilities/blob/master/Utilities/WeiboUserSpider.py). This script is use for crawl a weibo user (not yourself.) all tweets. Before you use it, you shoud fill the cookie copy from any browser you loged in at [page](https://weibo.cn).
 7. [one_draw.py](https://github.com/Kito0615/PythonUtilities/blob/master/Utilities/one_draw.py). This script is a trick for Wechat Mini Program Game fill the blank in one line.
+8. [EncryptPDF.py](https://github.com/Kito0615/PythonUtilities/blob/master/Utilities/EncryptPDF.py). This script can encrypt your PDF files. Please ensure installed PyPDF2 module.

@@ -88,7 +88,7 @@ def cal_tax_new(salary, none_tax=0):
     elif sa > t1 and sa <= t2:
         val = new_fixed_tax_at_class(1) + (sa - t1) * 0.1
     elif sa > st and sa <= t1:
-        val = (sa - st) * 0.1
+        val = (sa - st) * 0.03
     else:
         val = 0
     return val
@@ -97,9 +97,10 @@ def cal_tax_new(salary, none_tax=0):
 def main():
     salary = int(input('请输入你的薪资:'))
     none_tax = float(input('请输入不交税部分金额:'))
-    now_tax = cal_tax_old(salary, none_tax)
-    print('现行交税方案应缴税额:%.2f, 税后收入:%.2f' % (now_tax, salary - none_tax - now_tax))
-    new_tax = cal_tax_new(salary, none_tax)
+    spec_ded = float(input('请输入附加专项扣除金额:'))
+    now_tax = cal_tax_old(salary, none_tax + spec_ded)
+    print('旧交税方案应缴税额:%.2f, 税后收入:%.2f' % (now_tax, salary - none_tax - now_tax))
+    new_tax = cal_tax_new(salary, none_tax + spec_ded)
     print('新个税方案应缴税额:%.2f， 税后收入:%.2f' % (new_tax, salary - none_tax - new_tax))
     print('新个税方案少缴税:%.2f' % (now_tax - new_tax))
 
