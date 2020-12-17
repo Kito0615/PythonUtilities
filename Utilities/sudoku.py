@@ -159,7 +159,7 @@ def get_sudoku_str():
 
 def draw_sudoku(sudoku, title):
 	# import blank image
-	im = Image.open('blank.png')
+	im = Image.open('./../resources/blank.png')
 
 	# draw border
 	draw = ImageDraw.Draw(im)
