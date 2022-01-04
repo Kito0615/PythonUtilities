@@ -7,7 +7,7 @@ This repo is a collection of my own python utilities.
 2. [ImageCombiner.py](https://github.com/Kito0615/PythonUtilities/blob/master/Utilities/ImageCombiner.py) This script can combine images into one image. **Note: Only can combined into square. Maybe add auto calculate later.** 
 3. [BDPanDownloader](https://github.com/Kito0615/PythonUtilities/blob/master/Utilities/BDPanDownloader.py). This script can show [pan.baidu.com](http://pan.baidu.com) sharing file download url from others. You can copy the url to other downloader download directly instead offcial software.
 4. [tax_cal.py](https://github.com/Kito0615/PythonUtilities/blob/master/Utilities/tax_cal.py). This script is for compare new Personal Income Tax calculate in China after 2018.10.1.
-5. [loan_cal.py](https://github.com/Kito0615/PythonUtilities/blob/master/Utilities/tax_cal.py). This script is for calculating the loan tax. Two methods are both calculated.
+5. [loan_cal.py](https://github.com/Kito0615/PythonUtilities/blob/master/Utilities/loan_cal.py). This script is for calculating the loan tax. Two methods are both calculated.
 6. [WeiboUserSpider.py](https://github.com/Kito0615/PythonUtilities/blob/master/Utilities/WeiboUserSpider.py). This script is use for crawl a weibo user (not yourself.) all tweets. Before you use it, you shoud fill the cookie copy from any browser you loged in at [page](https://weibo.cn).
 7. [one_draw.py](https://github.com/Kito0615/PythonUtilities/blob/master/Utilities/one_draw.py). This script is a trick for Wechat Mini Program Game fill the blank in one line.
 8. [EncryptPDF.py](https://github.com/Kito0615/PythonUtilities/blob/master/Utilities/EncryptPDF.py). This script can encrypt your PDF files. Please ensure installed PyPDF2 module.
